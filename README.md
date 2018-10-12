@@ -1,5 +1,5 @@
 # Advanced-Memory-Allocator
-A realistic memory allocator.
+A realistic memory allocator. This was part of an assignment of Computer System coursework.
 
 ## Part 1 - Understand mmap
 The first thing to know is that brk (or the sbrk() function) is not the only way to request memory. Unix provides the mmap system call as well, which allows us to directly map into memory. There is some overhead in creating this mapping, but once it is created, there is no need for a context switch from the kernel, because the memory is directly mapped to where it needs to go. That is fantastic news for us! The only other major constraint is that allocations with mmap must be made in multiples the size of a page(If you specify this incorrctly, mmap will round up). This means if our page size is 4kb (4096 bytes), and we only use 12 bytes in our program, we have some waste!
